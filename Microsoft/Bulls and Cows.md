@@ -39,7 +39,7 @@ Explanation: Bulls are connected with a '|' and cows are underlined:
 LEETCODE ACCEPTED : 
 
 
-
+![Screenshot 2023-01-05 161626](https://user-images.githubusercontent.com/73281015/210764754-a98eef16-fb28-4bf7-a685-baa18c4409f7.png)
 
 
 
