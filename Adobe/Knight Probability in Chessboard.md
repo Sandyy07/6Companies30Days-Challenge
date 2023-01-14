@@ -26,7 +26,37 @@ The total probability the knight stays on the board is 0.0625.
 CODE (JAVA) :
 
 ```
+class Solution {
+    int[][] moves=new int[][]{{-2,-1},{-2,1},{-1,-2},{-1,2},{1,-2},{1,2},{2,-1},{2,1}};
 
+    public double knightProbability(int N, int K, int r, int c) {
+        int center=(N+1)/2;
+
+        double[][][] board=new double[K+1][center][center];
+        double available=find(board,r,c,N,K,center);
+        return available/Math.pow(8,K);
+    }
+
+    private int transform(int n,int center,int x){
+        return x<center?x:n-1-x;
+    }
+    private double find(double[][][] board,int i,int j,int n, int k, int center) {
+        if(i<0||j<0||i>=n||j>=n)
+            return 0;
+        if(k==0)
+            return 1;
+        i=transform(n,center,i);
+        j=transform(n,center,j);
+        if(board[k][i][j]!=0) return board[k][i][j];
+        double res=0;
+        for(int[] move:moves){
+            res+=find(board,i+move[0],j+move[1],n,k-1,center);
+        }
+        board[k][i][j]=res;
+        return res;
+    }
+}
 
 ```
 LEETCODE ACCEPTED :
+![Screenshot 2023-01-14 174956](https://user-images.githubusercontent.com/73281015/212471331-82326326-e8b4-44ae-ac72-2299ebc57e90.png)
